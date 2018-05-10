@@ -37,6 +37,8 @@ class Maze:
         return self._height
 
     def get_wall(self, x, y):
+        if x < 0 or y < 0 or x >= self._width or y >= self._height:
+            return False
         return self._walls[y][x]
 
     def set_wall(self, x, y, is_present=True):
