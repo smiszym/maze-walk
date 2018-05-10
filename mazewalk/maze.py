@@ -1,5 +1,9 @@
+from . import printers
+
 class Maze:
-    def __init__(self, width: int, height: int, generator_func=None):
+    def __init__(self, width: int, height: int,
+                 generator_func=None,
+                 printer_func=printers.ascii_printer):
         """
         Creates a maze with the specified dimensions. Both dimensions
         must be odd integers. generator_func is used to generate walls
@@ -18,6 +22,7 @@ class Maze:
         self._width = width
         self._height = height
         self._walls = [[False for x in range(width)] for y in range(height)]
+        self._printer_func = printer_func
 
         # Generate the walls
         if generator_func is not None:
@@ -30,3 +35,12 @@ class Maze:
     @property
     def height(self):
         return self._height
+
+    def get_wall(self, x, y):
+        return self._walls[y][x]
+
+    def set_wall(self, x, y, is_present=True):
+        self._walls[y][x] = is_present
+
+    def __str__(self):
+        return self._printer_func(self)
