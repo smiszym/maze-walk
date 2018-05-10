@@ -31,10 +31,18 @@ def utf8_printer(maze):
                 return "╰─"
             elif has_east and has_south:
                 return "╭─"
-            elif has_north or has_south:
+            elif has_north and has_south:
                 return "│ "
-            elif has_west or has_east:
+            elif has_west and has_east:
                 return "──"
+            elif has_west:
+                return "┤ "
+            elif has_east:
+                return "├─"
+            elif has_north:
+                return "┴ "
+            elif has_south:
+                return "┬ "
             elif not (has_north or has_south or has_west or has_east):
                 return "▬▬"
             else:
