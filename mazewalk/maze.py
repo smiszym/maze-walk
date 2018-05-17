@@ -22,6 +22,7 @@ class Maze:
         self._width = width
         self._height = height
         self._walls = [[False for x in range(width)] for y in range(height)]
+        self._initial_position = (1, 1)
         self._printer_func = printer_func
 
         # Generate the walls
@@ -35,6 +36,13 @@ class Maze:
     @property
     def height(self):
         return self._height
+
+    @property
+    def initial_position(self):
+        """
+        Return a position in the maze that is a initial character position.
+        """
+        return self._initial_position
 
     def get_wall(self, x, y):
         if x < 0 or y < 0 or x >= self._width or y >= self._height:
