@@ -1,14 +1,14 @@
 import curses
 
 from mazewalk.maze import Maze
-from mazewalk.generators import random_generator
+from mazewalk.generators import *
 from mazewalk.printers import utf8_printer
 
 
 def main(stdscr):
     width = 39
     height = 23
-    m = Maze(width, height, random_generator, utf8_printer)
+    m = Maze(width, height, bfs_generator, utf8_printer)
     pos = m.initial_position
     x = pos[0]*2
     y = pos[1]

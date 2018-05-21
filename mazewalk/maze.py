@@ -49,8 +49,11 @@ class Maze:
             return False
         return self._walls[y][x]
 
-    def set_wall(self, x, y, is_present=True):
-        self._walls[y][x] = is_present
+    def set_wall(self, cell, is_present=True):
+        x = cell[0]
+        y = cell[1]
+        if 0 <= x < self._width and 0 <= y < self._height:
+            self._walls[y][x] = is_present
 
     def __str__(self):
         return self._printer_func(self)
