@@ -6,9 +6,20 @@ from mazewalk.printers import utf8_printer
 
 
 def main(stdscr):
+    stdscr.addstr("Choose maze generation algorithm:\n")
+    stdscr.addstr("  1. Breadth First Search\n")
+    stdscr.addstr("  2. Horizontal Passage\n")
+    c = None
+    while c != ord('1') and c != ord('2'):
+        c = stdscr.getch()
+    if c == ord('1'):
+        generator = bfs_generator
+    else:
+        generator = horiz_generator
+
     width = 39
     height = 23
-    m = Maze(width, height, bfs_generator, utf8_printer)
+    m = Maze(width, height, generator, utf8_printer)
     pos = m.initial_position
     x = pos[0]*2
     y = pos[1]

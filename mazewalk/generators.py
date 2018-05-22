@@ -75,3 +75,17 @@ def bfs_generator(maze):
                             and candidate not in to_be_visited:
                         to_be_visited.append(candidate)
                 break
+
+
+def horiz_generator(maze):
+    random.seed()
+
+    # Pre-generate all possible horizontal walls, with holes in them
+    for y in range(maze.height):
+        maze.set_wall((0, y))
+        maze.set_wall((maze.width-1, y))
+
+        hole_position = random.randint(1, maze.width-1)
+        for x in range(maze.width):
+            if y % 2 == 0 and (x != hole_position or y == 0):
+                maze.set_wall((x, y))
