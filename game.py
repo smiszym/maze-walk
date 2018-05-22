@@ -8,13 +8,16 @@ from mazewalk.printers import utf8_printer
 def main(stdscr):
     stdscr.addstr("Choose maze generation algorithm:\n")
     stdscr.addstr("  1. Breadth First Search\n")
-    stdscr.addstr("  2. Horizontal Passage\n")
+    stdscr.addstr("  2. Depth First Search\n")
+    stdscr.addstr("  3. Horizontal Passage\n")
     c = None
-    while c != ord('1') and c != ord('2'):
+    while c != ord('1') and c != ord('2') and c != ord('3'):
         c = stdscr.getch()
     if c == ord('1'):
         generator = bfs_generator
-    else:
+    elif c == ord('2'):
+        generator = dfs_generator
+    elif c == ord('3'):
         generator = horiz_generator
 
     width = 39

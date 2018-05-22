@@ -10,7 +10,7 @@ def random_generator(maze):
                 maze.set_wall((x, y))
 
 
-def bfs_generator(maze):
+def graph_exploration_generator(maze, is_depth_first):
     # Pre-generate all possible walls; the unnecessary we'll be destroyed later
     for y in range(maze.height):
         for x in range(maze.width):
@@ -55,7 +55,10 @@ def bfs_generator(maze):
 
     while True:
         try:
-            where_to_go = to_be_visited.popleft()
+            if is_depth_first:
+                where_to_go = to_be_visited.pop()
+            else:
+                where_to_go = to_be_visited.popleft()
         except IndexError:
             break # all cells visited
         choices = ['n', 's', 'w', 'e']
@@ -78,6 +81,14 @@ def bfs_generator(maze):
 
     maze.set_wall((random.randint(0, maze.width // 2) * 2 + 1, maze.height-1),
                   False)
+
+
+def bfs_generator(maze):
+    return graph_exploration_generator(maze, False)
+
+
+def dfs_generator(maze):
+    return graph_exploration_generator(maze, True)
 
 
 def horiz_generator(maze):
