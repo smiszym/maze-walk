@@ -76,6 +76,9 @@ def bfs_generator(maze):
                         to_be_visited.append(candidate)
                 break
 
+    maze.set_wall((random.randint(0, maze.width // 2) * 2 + 1, maze.height-1),
+                  False)
+
 
 def horiz_generator(maze):
     random.seed()
