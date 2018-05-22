@@ -32,6 +32,9 @@ def main(stdscr):
     stdscr.addstr(str(m))
 
     while True:
+        if y == m.height - 1:
+            break
+
         stdscr.move(y, x)
         c = stdscr.getch()
         if c == curses.KEY_LEFT:
@@ -48,6 +51,10 @@ def main(stdscr):
                 y += 1
         elif c == 27:
             break  # quit the game
+
+    if y == m.height-1:
+        stdscr.addstr("Congratulations! You found the exit")
+        stdscr.getch()
 
 
 if __name__ == "__main__":
