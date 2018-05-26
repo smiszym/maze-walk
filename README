@@ -1,0 +1,13 @@
+Maze walk mini game
+
+Michał Szymański, 2018
+
+To run the game, type:
+  python3 run.py
+
+The game has three different maze generators built-in. Depth-First Search
+generator is the hardest, Breadth-First is easier, Horizontal Passage
+is the easiest. Pick one and start exploring. Your goal is to find a way
+out of the maze. The exit is at the bottom and you start at the top.
+
+Good luck!
