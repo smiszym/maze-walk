@@ -1,11 +1,11 @@
 import curses
 
-from mazewalk.maze import Maze
-from mazewalk.generators import *
-from mazewalk.printers import utf8_printer
+from .maze import Maze
+from .generators import *
+from .printers import utf8_printer
 
 
-def main(stdscr):
+def _main_inner(stdscr):
     stdscr.addstr("Choose maze generation algorithm:\n")
     stdscr.addstr("  1. Breadth First Search\n")
     stdscr.addstr("  2. Depth First Search\n")
@@ -33,7 +33,7 @@ def main(stdscr):
 
     while True:
         if y == m.height - 1:
-            break
+            break  # found the exit
 
         stdscr.move(y, x)
         c = stdscr.getch()
@@ -50,12 +50,12 @@ def main(stdscr):
             if y < height - 1 and not m.get_wall(x//2, y+1):
                 y += 1
         elif c == 27:
-            break  # quit the game
+            break  # quit the game on Esc key
 
     if y == m.height-1:
         stdscr.addstr("Congratulations! You found the exit")
         stdscr.getch()
 
 
-if __name__ == "__main__":
-    curses.wrapper(main)
+def play():
+    curses.wrapper(_main_inner)
